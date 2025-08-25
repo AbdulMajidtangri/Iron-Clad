@@ -240,3 +240,8 @@ a:focus-visible {
   .no-print { display: none !important; }
   body { background: white !important; color: black !important; }
 }
+@media (min-width: 720px) and (max-width: 970px) {
+  .w-full {
+    width: 1100px !important; /* override Tailwind's w-full */
+  }
+}

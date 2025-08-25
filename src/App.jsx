@@ -14,7 +14,10 @@ import Legal from './pages/Legal'
 
 function App() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}>
+    <div
+      className="w-full"
+      style={{ backgroundColor: 'var(--color-bg)', color: 'var(--color-text)' }}
+    >
       <Routes>
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<Home />} />
