@@ -5,9 +5,13 @@ import { motion } from 'framer-motion'
 import ProductCard from '../components/ProductCard'
 import { products } from '../data/products'
 import heroImage from '../assets/pexels-pixabay-73871.jpg'
-
+import AboutPreview from '../components/sections/AboutPreview'
+import ResourcesSection from '../components/sections/ResourcesSection'
+import NewsSection from '../components/sections/NewsSection'
+import SolutionsSection from '../components/sections/SolutionsSection'
+import ProductSection from '../components/sections/ProductSection'
+import CTASection from '../components/sections/CTASection'
 export default function Home() {
-  const featuredProducts = products.slice(0, 3)
   
   const stats = [
     { label: 'Countries Served', value: '45+', icon: Globe },
@@ -16,23 +20,6 @@ export default function Home() {
     { label: 'Years Experience', value: '25+', icon: Award }
   ]
 
-  const capabilities = [
-    {
-      icon: Radar,
-      title: 'Advanced Surveillance',
-      description: 'Next-generation radar and sensor systems for comprehensive threat detection and monitoring.'
-    },
-    {
-      icon: Satellite,
-      title: 'Secure Communications',
-      description: 'Military-grade communication systems with encryption and satellite connectivity.'
-    },
-    {
-      icon: Lock,
-      title: 'Cybersecurity',
-      description: 'AI-powered cyber defense platforms protecting critical infrastructure worldwide.'
-    }
-  ]
 
   return (
     <div className='w-full'>
@@ -53,7 +40,6 @@ export default function Home() {
           className="rounded-lg shadow-xl w-full max-w-md md:max-w-full h-auto max-h-80 md:max-h-96 object-cover"
         />
       </motion.div>
-      
       {/* Text Content - Bottom on Mobile, Left on Desktop */}
       <motion.div
         initial={{ opacity: 0, x: -30 }}
@@ -95,9 +81,8 @@ export default function Home() {
     </div>
   </div>
 </section>
-
       {/* Stats Section - Updated */}
-      <section className="py-16" style={{ backgroundColor: 'var(--color-bg)' }}>
+      <section style={{ backgroundColor: 'var(--color-bg)' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, index) => (
@@ -129,103 +114,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Capabilities Section */}
-      <section className="py-20" style={{ backgroundColor: 'var(--color-surface)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--color-heading)' }}>
-              Core Capabilities
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--color-muted)' }}>
-              Comprehensive defense solutions designed for modern security challenges
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {capabilities.map((capability, index) => (
-              <motion.div
-                key={capability.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="p-8 rounded-lg text-center hover:shadow-lg transition-all duration-300"
-                style={{ backgroundColor: 'var(--color-bg)' }}
-              >
-                <div className="flex justify-center mb-6">
-                  <div className="p-4 rounded-full" style={{ backgroundColor: 'var(--color-primary)' }}>
-                    <capability.icon className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--color-heading)' }}>
-                  {capability.title}
-                </h3>
-                <p style={{ color: 'var(--color-muted)' }}>
-                  {capability.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-20" style={{ backgroundColor: 'var(--color-bg)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: 'var(--color-heading)' }}>
-                Featured Products
-              </h2>
-              <p className="text-lg" style={{ color: 'var(--color-muted)' }}>
-                Advanced solutions for modern defense requirements
-              </p>
-            </div>
-            <Link 
-              to="/products"
-              className="flex items-center space-x-2 font-medium hover:opacity-70 transition-opacity"
-              style={{ color: 'var(--color-primary)' }}
-            >
-              <span>View All Products</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProducts.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-              >
-                <ProductCard product={product} />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      <AboutPreview />
+    <SolutionsSection />  {/* Featured Products */}
+      <ProductSection />
+      <ResourcesSection />
+      <NewsSection />
       {/* CTA Section */}
-      <section className="py-20" style={{ backgroundColor: 'var(--color-primary)' }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Ready to Enhance Your Defense Capabilities?
-          </h2>
-          <p className="text-xl mb-8 text-gray-200 max-w-2xl mx-auto">
-            Contact our team of experts to discuss your specific requirements and explore 
-            customized solutions for your organization.
-          </p>
-          <Link 
-            to="/contact"
-            className="inline-flex items-center space-x-2 px-8 py-4 bg-white rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300"
-            style={{ color: 'var(--color-primary)' }}
-          >
-            <span>Get Started</span>
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-      </section>
+      <CTASection />
     </div>
   )
 }
